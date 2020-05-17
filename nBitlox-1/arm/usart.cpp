@@ -128,6 +128,7 @@ void initUsart(void)
 
 void initFormatting(void)
 {
+	Serial.println(" ---------initFormatting---in-------");
 #if defined(__MSP430_CPU__) || defined(__SAM3X8E__)|| defined(__SAM3A8C__)
 	pmc_enable_periph_clk(ID_TRNG);
 	trng_enable(TRNG);

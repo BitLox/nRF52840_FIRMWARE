@@ -108,15 +108,15 @@ DueFlashStorage dueFlashStorage1;
 
 /** This will be called whenever something very unexpected occurs. This
   * function must not return. */
-//void fatalError(void)
-//{
-//	streamError();
-////	cli();
-//	for (;;)
-//	{
-//		// do nothing
-//	}
-//}
+void fatalError(void)
+{
+	streamError();
+//	cli();
+	for (;;)
+	{
+		// do nothing
+	}
+}
 
 /** PBKDF2 is used to derive encryption keys. In order to make brute-force
   * attacks more expensive, this should return a number which is as large
@@ -138,464 +138,472 @@ uint32_t getPBKDF2Iterations(void)
 
 
 
-//void useWhatComms(void)
-//{
-//	char rChar;
-//	int r;
-//	int s;
-//	uint8_t temp1[1];
-//	writeUSB_BLE_Screen();
-//
-//	rChar = waitForNumberButtonPress();
-//	r = rChar - '0';
-////	r = 1;
-//	switch (rChar){
-//	case '1':
-//		temp1[0] = 0;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+void useWhatComms(void)
+{
+	char rChar;
+	int r;
+	int s;
+	uint8_t temp1[1];
+	writeUSB_BLE_Screen();
+
+	rChar = waitForNumberButtonPress();
+	r = rChar - '0';
+//	r = 1;
+	switch (rChar){
+	case '1':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		deactivateBLE();
+		break;
+	case '2':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		deactivateBLE();
+		break;
+	case '3':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		deactivateBLE();
+		break;
+	case 'Y':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		deactivateBLE();
+		break;
+	case '7':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		deactivateBLE();
+		break;
+	case '8':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		deactivateBLE();
+		break;
+
+
+	case '4':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+	case '5':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+	case '6':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+	case '9':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+	case '0':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+	case 'N':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+
+	default:
+		s = 0;
+		temp1[0] = s;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		break;
+	}
+}
+
+void useWhatCommsStealth(void)
+{
+	char rChar;
+	int r;
+	int s;
+	uint8_t temp1[1];
+
+	r = rChar - '0';
+	r = 1;
+	rChar = '1';
+	switch (rChar){
+	case '1':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
 //		writeUSB_Screen();
-//		deactivateBLE();
-//		break;
-//	case '2':
-//		temp1[0] = 0;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-//		deactivateBLE();
-//		break;
-//	case '3':
-//		temp1[0] = 0;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-//		deactivateBLE();
-//		break;
-//	case 'Y':
-//		temp1[0] = 0;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-//		deactivateBLE();
-//		break;
-//	case '7':
-//		temp1[0] = 0;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-//		deactivateBLE();
-//		break;
-//	case '8':
-//		temp1[0] = 0;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-//		deactivateBLE();
-//		break;
-//
-//
-//	case '4':
-//		temp1[0] = 1;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-//		activateBLE();
-//		break;
-//	case '5':
-//		temp1[0] = 1;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-//		activateBLE();
-//		break;
-//	case '6':
-//		temp1[0] = 1;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-//		activateBLE();
-//		break;
-//	case '9':
-//		temp1[0] = 1;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-//		activateBLE();
-//		break;
-//	case '0':
-//		temp1[0] = 1;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-//		activateBLE();
-//		break;
-//	case 'N':
-//		temp1[0] = 1;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-//		activateBLE();
-//		break;
-//
-//	default:
-//		s = 0;
-//		temp1[0] = s;
-//		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-//		break;
-//	}
-//}
-//
-//void useWhatCommsStealth(void)
-//{
-//	char rChar;
-//	int r;
-//	int s;
-//	uint8_t temp1[1];
-//
-//	r = rChar - '0';
+		deactivateBLE();
+		break;
+	case '2':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		deactivateBLE();
+		break;
+	case '3':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		deactivateBLE();
+		break;
+	case 'Y':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		deactivateBLE();
+		break;
+	case '7':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		deactivateBLE();
+		break;
+	case '8':
+		temp1[0] = 0;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		deactivateBLE();
+		break;
+
+
+	case '4':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+	case '5':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+	case '6':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+	case '9':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+	case '0':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+	case 'N':
+		temp1[0] = 1;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeBLE_Screen();
+		activateBLE();
+		break;
+
+	default:
+		s = 0;
+		temp1[0] = s;
+		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
+		writeUSB_Screen();
+		break;
+	}
+}
+
+void useWhatCommsDuress(void)
+{
+	char rChar;
+	int r;
+	int s;
+	uint8_t temp1[1];
+	writeUSB_BLE_Screen();
+
+	rChar = waitForNumberButtonPress();
+	r = rChar - '0';
 //	r = 1;
 //	rChar = '1';
-//	switch (rChar){
-//	case '1':
+	switch (rChar){
+	case '1':
 //		temp1[0] = 0;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-////		writeUSB_Screen();
+		writeUSB_Screen();
 //		deactivateBLE();
-//		break;
-//	case '2':
+		break;
+	case '2':
 //		temp1[0] = 0;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
+		writeUSB_Screen();
 //		deactivateBLE();
-//		break;
-//	case '3':
+		break;
+	case '3':
 //		temp1[0] = 0;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
+		writeUSB_Screen();
 //		deactivateBLE();
-//		break;
-//	case 'Y':
+		break;
+	case 'Y':
 //		temp1[0] = 0;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
+		writeUSB_Screen();
 //		deactivateBLE();
-//		break;
-//	case '7':
+		break;
+	case '7':
 //		temp1[0] = 0;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
+		writeUSB_Screen();
 //		deactivateBLE();
-//		break;
-//	case '8':
+		break;
+	case '8':
 //		temp1[0] = 0;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
+		writeUSB_Screen();
 //		deactivateBLE();
-//		break;
-//
-//
-//	case '4':
+		break;
+
+
+	case '4':
 //		temp1[0] = 1;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
+		writeBLE_Screen();
 //		activateBLE();
-//		break;
-//	case '5':
+		break;
+	case '5':
 //		temp1[0] = 1;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
+		writeBLE_Screen();
 //		activateBLE();
-//		break;
-//	case '6':
+		break;
+	case '6':
 //		temp1[0] = 1;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
+		writeBLE_Screen();
 //		activateBLE();
-//		break;
-//	case '9':
+		break;
+	case '9':
 //		temp1[0] = 1;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
+		writeBLE_Screen();
 //		activateBLE();
-//		break;
-//	case '0':
+		break;
+	case '0':
 //		temp1[0] = 1;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
+		writeBLE_Screen();
 //		activateBLE();
-//		break;
-//	case 'N':
+		break;
+	case 'N':
 //		temp1[0] = 1;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
+		writeBLE_Screen();
 //		activateBLE();
-//		break;
-//
-//	default:
+		break;
+
+	default:
 //		s = 0;
 //		temp1[0] = s;
 //		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-//		break;
-//	}
-//}
-//
-//void useWhatCommsDuress(void)
-//{
-//	char rChar;
-//	int r;
-//	int s;
-//	uint8_t temp1[1];
-//	writeUSB_BLE_Screen();
-//
-//	rChar = waitForNumberButtonPress();
-//	r = rChar - '0';
-////	r = 1;
-////	rChar = '1';
-//	switch (rChar){
-//	case '1':
-////		temp1[0] = 0;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-////		deactivateBLE();
-//		break;
-//	case '2':
-////		temp1[0] = 0;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-////		deactivateBLE();
-//		break;
-//	case '3':
-////		temp1[0] = 0;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-////		deactivateBLE();
-//		break;
-//	case 'Y':
-////		temp1[0] = 0;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-////		deactivateBLE();
-//		break;
-//	case '7':
-////		temp1[0] = 0;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-////		deactivateBLE();
-//		break;
-//	case '8':
-////		temp1[0] = 0;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-////		deactivateBLE();
-//		break;
-//
-//
-//	case '4':
-////		temp1[0] = 1;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-////		activateBLE();
-//		break;
-//	case '5':
-////		temp1[0] = 1;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-////		activateBLE();
-//		break;
-//	case '6':
-////		temp1[0] = 1;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-////		activateBLE();
-//		break;
-//	case '9':
-////		temp1[0] = 1;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-////		activateBLE();
-//		break;
-//	case '0':
-////		temp1[0] = 1;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-////		activateBLE();
-//		break;
-//	case 'N':
-////		temp1[0] = 1;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeBLE_Screen();
-////		activateBLE();
-//		break;
-//
-//	default:
-////		s = 0;
-////		temp1[0] = s;
-////		nonVolatileWrite(temp1, DEVICE_COMMS_SET_ADDRESS, 1);
-//		writeUSB_Screen();
-//		break;
-//	}
-//showReady();
-//}
-//
-//
-//void useWhatSetup(void)
-//{
-//	char rChar;
-//	bool yesOrNo;
-//	int r;
-//	int s;
-//	uint8_t temp1[1];
-//
-//	inputInterjectionNoAck(ASKUSER_INITIAL_SETUP);
-//
-//	rChar = waitForNumberButtonPress();
-//
-//	clearDisplay();
-//	r = rChar - '0';
-//	switch (rChar){
-//	case '1':
-//		temp1[0] = 0;
-//
-//		buttonInterjectionNoAckSetup(ASKUSER_DESCRIBE_STANDARD_SETUP);
-//
-//		yesOrNo = waitForButtonPress();
-//		clearDisplay();
-//		if(!yesOrNo)
-//		{
-//			pinStatusCheckandPremadePIN();
-//		}else if(yesOrNo)
-//		{
-//			useWhatSetup();
-//			break;
-//		}
-//		level = 1;
-//		break;
-//
-//	case '2':
-//		temp1[0] = 0;
-//
-//		buttonInterjectionNoAckSetup(ASKUSER_DESCRIBE_ADVANCED_SETUP);
-//
-//		yesOrNo = waitForButtonPress();
-//
-//		clearDisplay();
-//
-//		if(!yesOrNo)
-//		{
-//			pinStatusCheck();
-//		}else if(yesOrNo)
-//		{
-//			useWhatSetup();
-//			break;
-//		}
-//		level = 2;
-//
-//		doAEMSet();
-//
-//		break;
-//	case '3':
-//		temp1[0] = 0;
-//
-//		buttonInterjectionNoAckSetup(ASKUSER_DESCRIBE_EXPERT_SETUP);
-//
-//		yesOrNo = waitForButtonPress();
-//		clearDisplay();
-//
-//		if(!yesOrNo)
-//		{
-//			pinStatusCheckExpert();
-//		}else if(yesOrNo)
-//		{
-//			useWhatSetup();
-//			break;
-//		}
-//		level = 3;
-//
-//		doAEMSet();
-//
-//		break;
-//	case 'Y':
-//		temp1[0] = 0;
-//
-//		buttonInterjectionNoAckSetup(ASKUSER_DESCRIBE_STANDARD_SETUP);
-//
-//		yesOrNo = waitForButtonPress();
-//		clearDisplay();
-//
-//		if(!yesOrNo)
-//		{
-//			pinStatusCheckandPremadePIN();
-//		}else if(yesOrNo)
-//		{
-//			useWhatSetup();
-//			break;
-//		}
-//		level = 1;
-//
-//		break;
-//
-//
-//	case 'N':
-//		temp1[0] = 1;
-//		writeX_Screen();
-//		Software_Reset();
-//		break;
-//
-//	case '0':
-//		writeEinkDisplay("READY FOR RESTORE...", false, COL_1_X, LINE_0_Y, "MAY TAKE UP TO 2 MINUTES",false,COL_1_X,LINE_1_Y, "TO DECRYPT AND WRITE",false,COL_1_X,LINE_2_Y, "WALLET DATA",false,COL_1_X,LINE_3_Y, "",false,0,0);
-//		useWhatCommsStealth();
-//		initUsart();
-//		loop();
-//		break;
-//
-//	default:
-//		useWhatSetup();
-//		break;
-//	}
-//}
-//
-//
-//
-//
-//void setupSequence(int level){
-//	bool canceledWalletCreation;
-//	int strength;
-//	if(level == 1)
-//	{
-//		strength = 128;
-//		initialFormatAuto();
-//		canceledWalletCreation = createDefaultWalletAuto(strength, level);
-//		useWhatComms();
-//		initUsart();
-//		if(!canceledWalletCreation)
-//		{
-//			showQRcode(0,0,0);
-//		}else{
-//			showReady();
-//		}
-//
-//	}
-//	else if(level == 2)
-//	{
-//		strength = 192;
-//		initialFormatAuto();
-//		canceledWalletCreation = createDefaultWalletAuto(strength, level);
-//		useWhatComms();
-//		initUsart();
-//
-//		if(!canceledWalletCreation)
-//		{
-//			showQRcode(0,0,0);
-//		}else{
-//			showReady();
-//		}
-//	}
-//	else if(level == 3)
-//	{
-//		strength = 256;
-//		initialFormatAuto();
-//		canceledWalletCreation = createDefaultWalletAuto(strength, level);
-//		useWhatComms();
-//		initUsart();
-//
-//		if(!canceledWalletCreation)
-//		{
-//			showQRcode(0,0,0);
-//		}else{
-//			showReady();
-//		}
-//	}
-//}
+		writeUSB_Screen();
+		break;
+	}
+showReady();
+}
+
+
+void useWhatSetup(void)
+{
+	char rChar;
+	bool yesOrNo;
+	int r;
+	int s;
+	uint8_t temp1[1];
+
+	inputInterjectionNoAck(ASKUSER_INITIAL_SETUP);
+
+	rChar = waitForNumberButtonPress();
+
+	clearDisplay();
+	r = rChar - '0';
+	switch (rChar){
+	case '1':
+		temp1[0] = 0;
+
+		buttonInterjectionNoAckSetup(ASKUSER_DESCRIBE_STANDARD_SETUP);
+
+		yesOrNo = waitForButtonPress();
+		clearDisplay();
+		if(!yesOrNo)
+		{
+			pinStatusCheckandPremadePIN();
+		}else if(yesOrNo)
+		{
+			useWhatSetup();
+			break;
+		}
+		level = 1;
+		break;
+
+	case '2':
+		temp1[0] = 0;
+
+		buttonInterjectionNoAckSetup(ASKUSER_DESCRIBE_ADVANCED_SETUP);
+
+		yesOrNo = waitForButtonPress();
+
+		clearDisplay();
+
+		if(!yesOrNo)
+		{
+			pinStatusCheck();
+		}else if(yesOrNo)
+		{
+			useWhatSetup();
+			break;
+		}
+		level = 2;
+
+		doAEMSet();
+
+		break;
+	case '3':
+		temp1[0] = 0;
+
+		buttonInterjectionNoAckSetup(ASKUSER_DESCRIBE_EXPERT_SETUP);
+
+		yesOrNo = waitForButtonPress();
+		clearDisplay();
+
+		if(!yesOrNo)
+		{
+			pinStatusCheckExpert();
+		}else if(yesOrNo)
+		{
+			useWhatSetup();
+			break;
+		}
+		level = 3;
+
+		doAEMSet();
+
+		break;
+	case 'Y':
+		temp1[0] = 0;
+
+		buttonInterjectionNoAckSetup(ASKUSER_DESCRIBE_STANDARD_SETUP);
+
+		yesOrNo = waitForButtonPress();
+		clearDisplay();
+
+		if(!yesOrNo)
+		{
+			pinStatusCheckandPremadePIN();
+		}else if(yesOrNo)
+		{
+			useWhatSetup();
+			break;
+		}
+		level = 1;
+
+		break;
+
+
+	case 'N':
+		temp1[0] = 1;
+		writeX_Screen();
+
+		#if defined(__MSP430_CPU__) || defined(__SAM3X8E__)|| defined(__SAM3A8C__)
+		Software_Reset();
+		#endif
+
+		#if defined(NRF52840_XXAA)
+		;
+		#endif
+
+		break;
+
+	case '0':
+		writeEinkDisplay("READY FOR RESTORE...", false, COL_1_X, LINE_0_Y, "MAY TAKE UP TO 2 MINUTES",false,COL_1_X,LINE_1_Y, "TO DECRYPT AND WRITE",false,COL_1_X,LINE_2_Y, "WALLET DATA",false,COL_1_X,LINE_3_Y, "",false,0,0);
+		useWhatCommsStealth();
+		initUsart();
+		loop();
+		break;
+
+	default:
+		useWhatSetup();
+		break;
+	}
+}
+
+
+
+
+void setupSequence(int level){
+	bool canceledWalletCreation;
+	int strength;
+	if(level == 1)
+	{
+		strength = 128;
+		initialFormatAuto();
+		canceledWalletCreation = createDefaultWalletAuto(strength, level);
+		useWhatComms();
+		initUsart();
+		if(!canceledWalletCreation)
+		{
+			showQRcode(0,0,0);
+		}else{
+			showReady();
+		}
+
+	}
+	else if(level == 2)
+	{
+		strength = 192;
+		initialFormatAuto();
+		canceledWalletCreation = createDefaultWalletAuto(strength, level);
+		useWhatComms();
+		initUsart();
+
+		if(!canceledWalletCreation)
+		{
+			showQRcode(0,0,0);
+		}else{
+			showReady();
+		}
+	}
+	else if(level == 3)
+	{
+		strength = 256;
+		initialFormatAuto();
+		canceledWalletCreation = createDefaultWalletAuto(strength, level);
+		useWhatComms();
+		initUsart();
+
+		if(!canceledWalletCreation)
+		{
+			showQRcode(0,0,0);
+		}else{
+			showReady();
+		}
+	}
+}
 
 
 void blinkem()
@@ -677,54 +685,60 @@ void setup()
 
 	initFormatting();
 
-//
-//	int AemStatus;
-//	AemStatus = checkUseAEM();
-//
-//	if(AemStatus != 127)
-//	{
-//		;
-//	}
-//	else if (AemStatus == 127)
-//	{
-////		startTimer2();
-//		doAEMValidate(false);
-////		stopTimer2();
-//	}
-//
-//
-//	int pinStatus;
-//	pinStatus = checkHasPIN();
-//
-//	if(pinStatus != 127)
-//	{
-//		useWhatSetup();
-//	}
-//	else if (pinStatus == 127)
-//	{
-////		startTimer2();
-//		checkDevicePIN(false);
-////		stopTimer2();
-//	}
-//
-//
-//	useWhatCommsStealth();
-//	initUsart();
-//
-//	if(is_formatted != 123)
-//	{
-//		setupSequence(level);
-//	}
-//	else
-//	{
-////		setupIdentifier();
-//
-//		useWhatComms();
-//		initUsart();
-//
-//		showReady();
-//
-//	}
+
+	int AemStatus;
+	AemStatus = checkUseAEM();
+	Serial.print(AemStatus);
+	Serial.println(" ---------checkUseAEM----------");
+
+
+	if(AemStatus != 127)
+	{
+		;
+	}
+	else if (AemStatus == 127)
+	{
+//		startTimer2();
+		doAEMValidate(false);
+//		stopTimer2();
+	}
+
+
+	int pinStatus;
+	Serial.println(" ----before-----checkHasPIN----------");
+	pinStatus = checkHasPIN();
+	Serial.print(pinStatus);
+	Serial.println(" ---------checkHasPIN----------");
+
+	if(pinStatus != 127)
+	{
+		useWhatSetup();
+	}
+	else if (pinStatus == 127)
+	{
+//		startTimer2();
+		checkDevicePIN(false);
+//		stopTimer2();
+	}
+
+
+	useWhatCommsStealth();
+	initUsart();
+
+	if(is_formatted != 123)
+	{
+		setupSequence(level);
+	}
+	else
+	{
+//		setupIdentifier();
+
+		useWhatComms();
+		initUsart();
+
+		showReady();
+
+	}
 
 
 }

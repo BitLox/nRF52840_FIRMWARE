@@ -109,7 +109,6 @@ int checkUseAEM(void)
 	int isForm;
 	uint8_t tempComms[1];
 	nonVolatileRead(tempComms, AEM_USE_ADDRESS, 1);
-
 	isForm = (int)tempComms[0];
 
 	return isForm;
