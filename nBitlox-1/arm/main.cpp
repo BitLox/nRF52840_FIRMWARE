@@ -100,15 +100,15 @@ DueFlashStorage dueFlashStorage1;
 
 /** This will be called whenever something very unexpected occurs. This
   * function must not return. */
-//void fatalError(void)
-//{
-//	streamError();
-////	cli();
-//	for (;;)
-//	{
-//		// do nothing
-//	}
-//}
+void fatalError(void)
+{
+	streamError();
+//	cli();
+	for (;;)
+	{
+		// do nothing
+	}
+}
 
 /** PBKDF2 is used to derive encryption keys. In order to make brute-force
   * attacks more expensive, this should return a number which is as large
