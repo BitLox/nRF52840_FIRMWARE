@@ -63,7 +63,7 @@ char testResult;
 ////	clearDisplay();
 //}
 
-//void useWhatComms(void);
+void useWhatComms(void);
 
 int level;
 
