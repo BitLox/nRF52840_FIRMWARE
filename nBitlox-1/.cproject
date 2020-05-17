@@ -29,6 +29,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/nRF52_ePaper}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/Adafruit_MPR121}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/FileSystem/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/extEEPROM}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.200324198" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -44,6 +46,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/nRF52_ePaper}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/Adafruit_MPR121}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/FileSystem/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/extEEPROM}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.1728349033" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -59,6 +63,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/nRF52_ePaper}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/Adafruit_MPR121}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/FileSystem/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/nBitlox-1/libraries/extEEPROM}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.1627996084" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>

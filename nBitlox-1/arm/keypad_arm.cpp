@@ -80,11 +80,11 @@ Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
 
 void setupTouchem() {
-  Serial.begin(9600);
-
-  while (!Serial) { // needed to keep leonardo/micro from starting too fast!
-    delay(10);
-  }
+//  Serial.begin(9600);
+//
+//  while (!Serial) { // needed to keep leonardo/micro from starting too fast!
+//    delay(10);
+//  }
 
   Serial.println("Adafruit MPR121 Capacitive Touch sensor test");
 

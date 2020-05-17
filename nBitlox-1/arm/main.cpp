@@ -27,6 +27,14 @@
 #include "DueFlashStorage_lib/DueFlashStorage.h"
 #endif
 
+#if defined(NRF52840_XXAA)
+#include "extEEPROM.h"
+//#include <Bluefruit_FileIO.h>
+//#define FILENAME    "/bitlox.txt"
+//#define CONTENTS    "DEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEF"
+//File file(InternalFS);
+#endif
+
 //#include "DueTimer/DueTimer.h" UNNEEDED
 
 #include "GB2312.h"
@@ -100,15 +108,15 @@ DueFlashStorage dueFlashStorage1;
 
 /** This will be called whenever something very unexpected occurs. This
   * function must not return. */
-void fatalError(void)
-{
-	streamError();
-//	cli();
-	for (;;)
-	{
-		// do nothing
-	}
-}
+//void fatalError(void)
+//{
+//	streamError();
+////	cli();
+//	for (;;)
+//	{
+//		// do nothing
+//	}
+//}
 
 /** PBKDF2 is used to derive encryption keys. In order to make brute-force
   * attacks more expensive, this should return a number which is as large
@@ -645,22 +653,30 @@ void setup()
 ////	writeUnderline(STRIPE_X_START, STRIPE_Y_START, STRIPE_X_END, STRIPE_Y_END);
 
 	display();
-//
-//
-//
-//
-//
+
 	showReady();
-//
+	Serial.begin(9600);
+
+	while (!Serial) { // needed to keep leonardo/micro from starting too fast!
+	delay(10);
+	}
+
+
+	#if defined(NRF52840_XXAA)
 	setupTouchem();
-	blinkem();
+
+//	blinkem();
+//	extEEPROM myEEPROM(kbits_256, 1, 64, 0x50);
+//	byte i2cStat = myEEPROM.begin(myEEPROM.twiClock100kHz);
+//	InternalFS.begin();
+	#endif
 
 
 
 	languageMenuInitially();
-//
-//	initFormatting();
-//
+
+	initFormatting();
+
 //
 //	int AemStatus;
 //	AemStatus = checkUseAEM();

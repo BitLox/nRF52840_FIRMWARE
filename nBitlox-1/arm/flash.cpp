@@ -36,13 +36,28 @@
 #endif
 
 #if defined(NRF52840_XXAA)
-//#include "DueFlashStorage_lib/DueFlashStorage.h"
+#include "extEEPROM.h"
+
+//extEEPROM myEEPROM(kbits_256, 1, 64, 0x50);
+
+//#include <Bluefruit_FileIO.h>
+//#define FILENAME    "/bitlox.txt"
+//#define CONTENTS    "DEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEF"
+//File file(InternalFS);
+#endif
+
+#if defined(NRF52840_XXAA)
+	extEEPROM myEEPROM(kbits_256, 1, 64, 0x50);
+	byte i2cStat = myEEPROM.begin(myEEPROM.twiClock100kHz);
+
 #endif
 
 //#include "eink.h"
 #if defined(__MSP430_CPU__) || defined(__SAM3X8E__)|| defined(__SAM3A8C__)
 DueFlashStorage dueFlashStorage;
 #endif
+
+
 
 struct Configuration {
   uint8_t b;
@@ -62,6 +77,12 @@ struct Configuration {
   */
 NonVolatileReturn nonVolatileWrite(uint8_t *data, uint32_t address, uint32_t length)
 {
+	Serial.println("---nonVolatileWrite-------");
+//	extEEPROM myEEPROM(kbits_256, 1, 64, 0x50);
+//	byte i2cStat = myEEPROM.begin(myEEPROM.twiClock100kHz);
+
+
+
 	if ((address > EEPROM_SIZE) || (length > EEPROM_SIZE)
 		|| ((address + length) > EEPROM_SIZE))
 	{
@@ -77,7 +98,14 @@ NonVolatileReturn nonVolatileWrite(uint8_t *data, uint32_t address, uint32_t len
 	dueFlashStorage.write(address, data, (size_t)length);
 	#endif
 
+//#if defined(NRF52840_XXAA)
+//file.open(FILENAME, FILE_READ);
+//;
+//#endif
+
 	#if defined(NRF52840_XXAA)
+	myEEPROM.write(address, data, (size_t)length);
+
 	;
 	#endif
 
@@ -106,12 +134,21 @@ NonVolatileReturn nonVolatileReadNoPtr(uint8_t data, uint32_t address, uint32_t 
 	}
 	data = dueFlashStorage.read(address);
 #endif
+#if defined(NRF52840_XXAA)
+	if ((address > EEPROM_SIZE) || (length > EEPROM_SIZE)
+		|| ((address + (uint32_t)length) > EEPROM_SIZE))
+	{
+		return NV_INVALID_ADDRESS;
+	}
+	data = myEEPROM.read(address);
+#endif
 	return NV_NO_ERROR;
 
 }
 
 NonVolatileReturn nonVolatileRead(uint8_t *data, uint32_t address, uint32_t length)
 {
+	Serial.println("---nonVolatileRead--top-----");
 	if ((address > EEPROM_SIZE) || (length > EEPROM_SIZE)
 		|| ((address + (uint32_t)length) > EEPROM_SIZE))
 	{
@@ -126,13 +163,16 @@ NonVolatileReturn nonVolatileRead(uint8_t *data, uint32_t address, uint32_t leng
 		#endif
 
 		#if defined(NRF52840_XXAA)
-		data[i] = 0;
+		data[i] = myEEPROM.read(address+i);
 		#endif
+		Serial.print(data[i]);
+		Serial.println("  ---nonVolatileRead--loop-----");
 	}
 
 //	data = beingRead;
 
 //	writeEink(, false, 10, 10);
+	Serial.println("---nonVolatileRead--out-----");
 
 	return NV_NO_ERROR;
 
