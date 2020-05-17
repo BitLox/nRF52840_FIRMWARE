@@ -67,21 +67,30 @@ void useWhatComms(void);
 
 int level;
 
-//#define NELEMS(x)  (sizeof(x) / sizeof(x[0]))
+#if defined(__MSP430_CPU__) || defined(__SAM3X8E__)|| defined(__SAM3A8C__)
 
-//void Software_Reset(void) {
-////============================================================================================
-////   führt ein Reset des Arduino DUE aus...
-////
-////   Parameter: keine
-////   Rueckgabe: keine
-////============================================================================================
-//  const int RSTC_KEY = 0xA5;
-//  #if defined(__MSP430_CPU__) || defined(__SAM3X8E__)|| defined(__SAM3A8C__)
-//  RSTC->RSTC_CR = RSTC_CR_KEY(RSTC_KEY) | RSTC_CR_PROCRST | RSTC_CR_PERRST;
-//  #endif
-//  while (true);
-//}
+#define NELEMS(x)  (sizeof(x) / sizeof(x[0]))
+
+#endif
+
+
+#if defined(__MSP430_CPU__) || defined(__SAM3X8E__)|| defined(__SAM3A8C__)
+
+void Software_Reset(void) {
+//============================================================================================
+//   führt ein Reset des Arduino DUE aus...
+//
+//   Parameter: keine
+//   Rueckgabe: keine
+//============================================================================================
+  const int RSTC_KEY = 0xA5;
+  #if defined(__MSP430_CPU__) || defined(__SAM3X8E__)|| defined(__SAM3A8C__)
+  RSTC->RSTC_CR = RSTC_CR_KEY(RSTC_KEY) | RSTC_CR_PROCRST | RSTC_CR_PERRST;
+  #endif
+  while (true);
+}
+
+#endif
 
 #if defined(__MSP430_CPU__) || defined(__SAM3X8E__)|| defined(__SAM3A8C__)
 
