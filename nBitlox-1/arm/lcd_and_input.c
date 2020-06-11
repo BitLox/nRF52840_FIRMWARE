@@ -255,6 +255,7 @@ void clearOutputsSeen(void)
 /** Wait until neither accept nor cancel buttons are being pressed. */
 static void waitForNoButtonPress(void)
 {
+//	writeEinkDisplay("wFNBP UNcommented", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
 	const char* ptr_pressed;
 	char pressed;
 
@@ -650,9 +651,12 @@ char* getTransString1(char* str1) {
   */
 char *userInput(AskUserCommand command)
 {
+	writeEinkDisplay("in *userInput", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
+
 	uint8_t i;
 	uint8_t tempLang[1];
 	nonVolatileRead(tempLang, DEVICE_LANG_ADDRESS, 1);
+	writeEinkDisplay("lang read", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
 
 	int lang;
 	lang = (int)tempLang[0];
@@ -670,6 +674,7 @@ char *userInput(AskUserCommand command)
 
 	if (command == ASKUSER_INITIAL_SETUP)
 		{
+		writeEinkDisplay("in ASKUSER_INITIAL_SETUP", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
 		const wchar_t INITIAL_SETUP_line0[][25] = {
 				L"INITIAL SETUP",
 				L"ERSTEINRICHTUNG",
@@ -724,8 +729,9 @@ char *userInput(AskUserCommand command)
 
 
 		waitForNoButtonPress();
+		writeEinkDisplay("after wFNBP", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
 		initDisplay();
-	    overlayBatteryStatus(BATT_VALUE_DISPLAY);
+//	    overlayBatteryStatus(BATT_VALUE_DISPLAY);
 //		writeEinkDrawUnicodeSingle(temp, tempLength, COL_1_X, LINE_0_Y);
 		writeEinkDrawUnicodeSingle((unsigned int*)INITIAL_SETUP_line0[lang], wcslen(INITIAL_SETUP_line0[lang]), COL_1_X, LINE_0_Y);
 		writeUnderline(STRIPE_X_START, STRIPE_Y_START, STRIPE_X_END, STRIPE_Y_END);
@@ -5521,6 +5527,7 @@ void languageMenuInitially(void){
 //	  digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
 //	  delay(1000);              // wait for a second
 
+
 	nonVolatileWrite(0, DEVICE_LANG_SET_ADDRESS, 1);
 
 
@@ -5541,6 +5548,7 @@ void languageMenuInitially(void){
 				str_lang_list_UNICODE[4],  24, 0, 73);
 		display();
 		setLangInitially();
+		writeEinkDisplay("setLangInitially DONE", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
 	}else{
 //		writeEink("set", false, 10, 10);
 	}

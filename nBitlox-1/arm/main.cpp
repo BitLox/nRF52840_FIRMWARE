@@ -430,6 +430,8 @@ showReady();
 
 void useWhatSetup(void)
 {
+	writeEinkDisplay("in useWhatSetup", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
+
 	char rChar;
 	bool yesOrNo;
 	int r;
@@ -682,36 +684,42 @@ void setup()
 
 
 	languageMenuInitially();
-
-	initFormatting();
-
-
-	int AemStatus;
-	AemStatus = checkUseAEM();
-	Serial.print(AemStatus);
-	Serial.println(" ---------checkUseAEM----------");
+	writeEinkDisplay("lang-MenuInitially DONE", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
+//	initFormatting();  //not even sure why this is here other than to initialize some non-nRF52 things
 
 
-	if(AemStatus != 127)
-	{
-		;
-	}
-	else if (AemStatus == 127)
-	{
-//		startTimer2();
-		doAEMValidate(false);
-//		stopTimer2();
-	}
+//	int AemStatus;
+//	AemStatus = checkUseAEM();
+////	Serial.print(AemStatus);
+////	Serial.println(" ---------checkUseAEM----------");
+//
+//
+//	if(AemStatus != 127)
+//	{
+//		;
+//	}
+//	else if (AemStatus == 127)
+//	{
+////		startTimer2();
+//		doAEMValidate(false);
+////		stopTimer2();
+//	}
 
 
 	int pinStatus;
-	Serial.println(" ----before-----checkHasPIN----------");
+	writeEinkDisplay("before checkHasPIN", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
+//	Serial.println(" ----before-----checkHasPIN----------");
+//	delay(100);
 	pinStatus = checkHasPIN();
-	Serial.print(pinStatus);
-	Serial.println(" ---------checkHasPIN----------");
+	writeEinkDisplay("after checkHasPIN", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
+
+	Serial.println(pinStatus);
+	writeEinkDisplay("Serial pinStatus", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
 
 	if(pinStatus != 127)
 	{
+		writeEinkDisplay("pinStatus != 127", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
+
 		useWhatSetup();
 	}
 	else if (pinStatus == 127)

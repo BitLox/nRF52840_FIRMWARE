@@ -100,7 +100,7 @@ void initUsart(void)
 //
 //		Serial1.end();
 
-		Serial1.begin(115200);
+//		Serial1.begin(115200); ########
 
 //		Serial1.begin(57600);
 //		Serial1.begin(38400);
@@ -128,11 +128,13 @@ void initUsart(void)
 
 void initFormatting(void)
 {
-	Serial.println(" ---------initFormatting---in-------");
+	writeEinkDisplay("initFormatting", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
+//	Serial.println(" ---------initFormatting------------in-------");
 #if defined(__MSP430_CPU__) || defined(__SAM3X8E__)|| defined(__SAM3A8C__)
 	pmc_enable_periph_clk(ID_TRNG);
 	trng_enable(TRNG);
 #endif
+	// ah this is one of those weird "globals" I had to contend with
 	is_formatted = checkisFormatted();
 }
 
@@ -154,7 +156,7 @@ void usartSend(uint8_t data)
 
 	if(bluetooth_on==1)
 	{
-		Serial1.write(data);
+//		Serial1.write(data);
 	}else{
 		Serial.write(data);
 	}
@@ -281,7 +283,7 @@ uint8_t usartReceive(void)
 
 	if(bluetooth_on==1)
 	{
-		Serial1.readBytes(rTmp, 1);
+//		Serial1.readBytes(rTmp, 1);
 	}else{
 		Serial.readBytes(rTmp, 1);
 	}

@@ -10,6 +10,16 @@
 #include "main.h"
 #include "hwinit.h"
 #include "../storage_common.h"
+#include "../hwinterface.h"
+
+//#include "keypad_arm.h"
+//#include "GB2312.h"
+//#include "eink.h"
+//#include "due_ePaper_lib/GT20L16P1Y_D.h"
+//#include <Wire.h>
+
+
+
 
 #if defined(__SAM3X8E__)
 #define ENABLE_PIN  28
@@ -97,10 +107,13 @@ int checkHasPIN(void)
 {
 	int isForm;
 	uint8_t tempComms[1];
+
 	nonVolatileRead(tempComms, HAS_PIN_ADDRESS, 1);
 
 	isForm = (int)tempComms[0];
+//	writeEinkDisplay("", false, 5, 5, (char *)isForm, false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
 
+//	isForm = 0;
 	return isForm;
 }
 

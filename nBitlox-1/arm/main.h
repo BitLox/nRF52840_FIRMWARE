@@ -9,6 +9,7 @@
 
 //add your includes for the project ARM_Lockbox_1 here
 
+//#define NRF52840_XXAA
 
 //end of add your includes here
 #ifdef __cplusplus

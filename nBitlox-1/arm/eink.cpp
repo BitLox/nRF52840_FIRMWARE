@@ -564,7 +564,8 @@ void writeEinkDisplayPrep(	char *toDisplayLine0, int x0, int y0,
 
 void overlayBatteryStatus(bool displayValue)
 {
-	int battery = batteryLevel();
+//	int battery = batteryLevel();
+	int battery = 0;
 	int battLevel;
 
 	char batteryTxt[16];

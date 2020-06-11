@@ -27,7 +27,21 @@
 //
 //#endif
 
+#include "usart.h"
 
+#include "Arduino.h"
+
+
+#include "../endian.h"
+#include "../hwinterface.h"
+#include "hwinit.h"
+#include "lcd_and_input.h"
+#include "main.h"
+#include "BLE.h"
+#include "eink.h"
+#include "../stream_comm.h"
+
+#include "keypad_alpha.h"
 
 #include "../common.h"
 #include "../hwinterface.h"
@@ -77,7 +91,7 @@ struct Configuration {
   */
 NonVolatileReturn nonVolatileWrite(uint8_t *data, uint32_t address, uint32_t length)
 {
-	Serial.println("---nonVolatileWrite-------");
+//	Serial.println("---nonVolatileWrite-------");
 //	extEEPROM myEEPROM(kbits_256, 1, 64, 0x50);
 //	byte i2cStat = myEEPROM.begin(myEEPROM.twiClock100kHz);
 
@@ -148,7 +162,7 @@ NonVolatileReturn nonVolatileReadNoPtr(uint8_t data, uint32_t address, uint32_t 
 
 NonVolatileReturn nonVolatileRead(uint8_t *data, uint32_t address, uint32_t length)
 {
-	Serial.println("---nonVolatileRead--top-----");
+//	Serial.println("---nonVolatileRead--top-----");
 	if ((address > EEPROM_SIZE) || (length > EEPROM_SIZE)
 		|| ((address + (uint32_t)length) > EEPROM_SIZE))
 	{
@@ -165,14 +179,14 @@ NonVolatileReturn nonVolatileRead(uint8_t *data, uint32_t address, uint32_t leng
 		#if defined(NRF52840_XXAA)
 		data[i] = myEEPROM.read(address+i);
 		#endif
-		Serial.print(data[i]);
-		Serial.println("  ---nonVolatileRead--loop-----");
+//		Serial.print(data[i]);
+//		Serial.println("  ---nonVolatileRead--loop-----");
 	}
 
 //	data = beingRead;
 
 //	writeEink(, false, 10, 10);
-	Serial.println("---nonVolatileRead--out-----");
+//	Serial.println("---nonVolatileRead--out-----");
 
 	return NV_NO_ERROR;
 
