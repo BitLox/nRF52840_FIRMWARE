@@ -1320,7 +1320,7 @@ char *getInput(bool displayInput, bool initialSetup) {
 		#endif
 
 
-//		#if defined(NRF52840_XXAA)
+		#if defined(NRF52840_XXAA)
 		if(displayInput) {
 			if(caps) {
 				theChar = alphkeypad_3A8C_CAPS((8*i)+INPUT_X, INPUT_Y);
@@ -1333,7 +1333,7 @@ char *getInput(bool displayInput, bool initialSetup) {
 			theChar = alphkeypad_3A8CnoDisplay((8*i)+INPUT_X, INPUT_Y);
 		}
 
-//		#endif
+		#endif
 
         if(initialSetup) {
         	j = 3;
