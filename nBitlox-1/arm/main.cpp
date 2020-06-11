@@ -715,6 +715,8 @@ void setup()
 
 	Serial.println(pinStatus);
 	writeEinkDisplay("Serial pinStatus", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
+	writeEinkDisplay("Reset pinStatus", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
+//	pinStatus = 0;
 
 	if(pinStatus != 127)
 	{

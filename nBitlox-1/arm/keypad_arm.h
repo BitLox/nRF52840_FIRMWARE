@@ -18,6 +18,7 @@ extern char NewKeyRoutine(void);
 extern char getTouchPadKey(void);
 extern void setupTouchem(void);
 extern char touchTest(void);
+extern char getFullKeysInput(void);
 #ifdef __cplusplus
      }
 #endif

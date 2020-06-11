@@ -98,6 +98,78 @@ void setupTouchem() {
 }
 
 
+char touchGetInput()
+{
+	 char theKey = ' ';
+
+//	 do  {
+	// Get the currently touched pads
+	  currtouched = cap.touched();
+
+	  for (uint8_t i=0; i<12; i++) {
+	    // it if *is* touched and *wasnt* touched before, alert!
+	    if ((currtouched & _BV(i)) && !(lasttouched & _BV(i)) ) {
+	      Serial.print(i);
+	      Serial.println(" touched in touchTest");
+	      switch (i){
+	      case 0	:
+	    	  theKey = '1';
+	      	  break;
+	      case 1	:
+	    	  theKey = '4';
+	      	  break;
+	      case 2	:
+	    	  theKey = '7';
+	      	  break;
+	      case 3	:
+	    	  theKey = '@';
+	      	  break;
+	      case 4	:
+	    	  theKey = '2';
+	      	  break;
+	      case 5	:
+	    	  theKey = '5';
+	      	  break;
+	      case 6	:
+	    	  theKey = '8';
+	      	  break;
+	      case 7	:
+	    	  theKey = '0';
+	      	  break;
+	      case 8	:
+	    	  theKey = '3';
+	      	  break;
+	      case 9	:
+	    	  theKey = '6';
+	      	  break;
+	      case 10	:
+	    	  theKey = '9';
+	      	  break;
+	      case 11	:
+	    	  theKey = '~';
+	      	  break;
+	      default	:
+	    	  theKey = '#';
+	      }
+	      Serial.print(theKey);
+	      Serial.println(" returned as theKey");
+	    }
+
+	    // if it *was* touched and now *isnt*, alert!
+//	    if (!(currtouched & _BV(i)) && (lasttouched & _BV(i)) ) {
+//	      Serial.print(i); Serial.println(" released");
+//	    }
+	  }
+
+	  // reset our state
+	  lasttouched = currtouched;
+//	 }while(theKey !='0' && theKey !='1' && theKey !='2' && theKey !='3' && theKey !='4' && theKey !='5' && theKey !='6' && theKey !='7' && theKey !='8' && theKey !='9' && theKey !='Y' && theKey !='N' );
+
+	 return theKey;
+
+}
+
+
 char touchTest()
 {
 	 char theKey = ' ';
@@ -257,7 +329,25 @@ char getFullKeys(void)
 	}
 
 	return ' '; // have to change this to something not normally returned
+}
 
+char getFullKeysInput(void)
+{
+#if defined(__SAM3X8E__)
+	char key = keypad.getKey();
+#endif
+#if defined(__SAM3A8C__)
+	char key = NewKeyRoutine();
+#endif
+#if defined(NRF52840_XXAA)
+	char key = touchGetInput();
+#endif
+
+	if (key){
+		return(key);
+	}
+
+	return '#'; // have to change this to something not normally returned
 }
 
 char getAcceptCancelKeys(void)
