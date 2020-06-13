@@ -110,7 +110,7 @@ char touchGetInput()
 	    // it if *is* touched and *wasnt* touched before, alert!
 	    if ((currtouched & _BV(i)) && !(lasttouched & _BV(i)) ) {
 	      Serial.print(i);
-	      Serial.println(" touched in touchTest");
+	      Serial.println(" touched in touchGetInput");
 	      switch (i){
 	      case 0	:
 	    	  theKey = '1';
@@ -149,7 +149,7 @@ char touchGetInput()
 	    	  theKey = '~';
 	      	  break;
 	      default	:
-	    	  theKey = '#';
+	    	  theKey = ' ';
 	      }
 	      Serial.print(theKey);
 	      Serial.println(" returned as theKey");
