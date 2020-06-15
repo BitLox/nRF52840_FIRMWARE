@@ -34,6 +34,8 @@
 #include "bip39_trez_prev.h"
 #include "pbkdf2_trez_prev.h"
 #include "arm/keypad_alpha.h"
+#include "arm/random.h"
+
 
 
 const char *mnemonic_from_input_indices(int len);

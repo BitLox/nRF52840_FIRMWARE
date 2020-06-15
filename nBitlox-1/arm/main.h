@@ -32,6 +32,7 @@ extern void useWhatSetup(void);
 extern void useWhatCommsDuress(void);
 extern void enterBackupMode(void);
 extern void blinkem(void);
+//extern int hardwareRandom32Bytes(uint8_t *buffer);
 //extern void startTimer1(void);
 //extern void stopTimer1(void);
 

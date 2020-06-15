@@ -174,13 +174,13 @@ void writeEinkNoDisplaySingle(char *toDisplayLine0, int x0, int y0)
 }
 void writeEinkNoDisplaySingleBig(char *toDisplayLine0, int x0, int y0)
 {
-//    EPAPER.drawStringBig(toDisplayLine0, x0, y0);
+    EPAPER.drawStringBig(toDisplayLine0, x0, y0);
 }
 
 void writeEinkDisplayNumberSingleBig(long theNumber, int x0, int y0)
 {
     initDisplay();
-//	EPAPER.drawNumberBig(theNumber, x0, y0);
+	EPAPER.drawNumberBig(theNumber, x0, y0);
 	display();
 }
 

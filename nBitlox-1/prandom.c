@@ -23,6 +23,8 @@
 
 #endif // #ifdef TEST_PRANDOM
 
+#include "arm/random.h"
+
 #include "common.h"
 #include "aes.h"
 #include "sha256.h"

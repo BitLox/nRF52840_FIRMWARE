@@ -2,6 +2,7 @@
 //#include "main.h"
 #include "Arduino.h"
 
+#include <stdint.h>
 #include <string.h>
 #include "avr2arm.h"
 #include "../hwinterface.h"
@@ -50,26 +51,9 @@
 
 char testResult;
 
-//#define TURBO
 
-//void setupIdentifier() {
-////	uint32_t unique_id_chip[4];
-////
-////	flash_read_unique_id(unique_id_chip, 4);
-////
-////	initDisplay();
-////	overlayBatteryStatus(BATT_VALUE_DISPLAY);
-////	writeEinkNoDisplaySingle("DEVICE UNIQUE ID", COL_1_X, LINE_0_Y);
-////	writeUnderline(STRIPE_X_START, STRIPE_Y_START, STRIPE_X_END, STRIPE_Y_END);
-////	writeEinkDrawNumberSingle(unique_id_chip[0], COL_1_X, LINE_1_Y);
-////	writeEinkDrawNumberSingle(unique_id_chip[1], COL_1_X, LINE_2_Y);
-////	writeEinkDrawNumberSingle(unique_id_chip[2], COL_1_X, LINE_3_Y);
-////	writeEinkDrawNumberSingle(unique_id_chip[3], COL_1_X, LINE_4_Y);
-////	display();
-////	waitForButtonPress();
-////
-////	clearDisplay();
-//}
+
+
 
 void useWhatComms(void);
 
@@ -610,11 +594,6 @@ void setupSequence(int level){
 
 void blinkem()
 {
-//	  pinMode(13, OUTPUT);
-//	  pinMode(14, OUTPUT);
-//	  pinMode(15, OUTPUT);
-//	  pinMode(16, OUTPUT);
-
 	  digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
 	  delay(100);              // wait for a second
 	  digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
@@ -645,7 +624,6 @@ void blinkem()
 
 void setup()
 {
-//	void __stack_chk_guard_setup(void);
 
 //	init();
 
@@ -658,10 +636,6 @@ void setup()
 
 	initDisplay();
 	writeEinkNoDisplay("v67_nRF52840", COL_1_X, LINE_0_Y, "EXPERIMENTAL",COL_1_X, LINE_2_Y, "",5,50, "",5,70, "",0,0);
-
-////    overlayBatteryStatus(BATT_VALUE_DISPLAY);
-////	writeUnderline(STRIPE_X_START, STRIPE_Y_START, STRIPE_X_END, STRIPE_Y_END);
-
 	display();
 
 	showReady();
@@ -674,11 +648,6 @@ void setup()
 
 	#if defined(NRF52840_XXAA)
 	setupTouchem();
-
-//	blinkem();
-//	extEEPROM myEEPROM(kbits_256, 1, 64, 0x50);
-//	byte i2cStat = myEEPROM.begin(myEEPROM.twiClock100kHz);
-//	InternalFS.begin();
 	#endif
 
 
@@ -688,80 +657,51 @@ void setup()
 //	initFormatting();  //not even sure why this is here other than to initialize some non-nRF52 things
 
 
-//	int AemStatus;
-//	AemStatus = checkUseAEM();
-////	Serial.print(AemStatus);
-////	Serial.println(" ---------checkUseAEM----------");
-//
-//
-//	if(AemStatus != 127)
-//	{
-//		;
-//	}
-//	else if (AemStatus == 127)
-//	{
-////		startTimer2();
-//		doAEMValidate(false);
-////		stopTimer2();
-//	}
+	int AemStatus;
+	AemStatus = checkUseAEM();
+	if(AemStatus != 127) {
+		;
+	}
+	else if (AemStatus == 127) {
+		doAEMValidate(false);
+	}
 
 
 	int pinStatus;
+
 	writeEinkDisplay("before checkHasPIN", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
-//	Serial.println(" ----before-----checkHasPIN----------");
-//	delay(100);
 	pinStatus = checkHasPIN();
 	writeEinkDisplay("after checkHasPIN", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
 
 	Serial.println(pinStatus);
 	writeEinkDisplay("Serial pinStatus", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
 	writeEinkDisplay("Reset pinStatus", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
-//	pinStatus = 0;
 
-	if(pinStatus != 127)
-	{
+	if(pinStatus != 127) {
 		writeEinkDisplay("pinStatus != 127", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
-
 		useWhatSetup();
 	}
-	else if (pinStatus == 127)
-	{
-//		startTimer2();
+	else if (pinStatus == 127) {
 		checkDevicePIN(false);
-//		stopTimer2();
 	}
 
 
 	useWhatCommsStealth();
 	initUsart();
 
-	if(is_formatted != 123)
-	{
+	if(is_formatted != 123) {
 		setupSequence(level);
 	}
-	else
-	{
-//		setupIdentifier();
-
+	else {
 		useWhatComms();
 		initUsart();
-
 		showReady();
-
 	}
-
-
 }
 
 // The loop function is called in an endless loop
 void loop()
 {
-
-//	testResult = touchTest();
-//	Serial.println(testResult);
-//	Serial.println("-------------------");
-
-
 //	processPacket();
 }
 
