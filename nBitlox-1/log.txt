@@ -1,0 +1,13 @@
+2020-06-22
+Track down the keypad irregularities
+Random from HW is not working, need to insert the library and tweak
+Seems to be stuck on the mnemonic screen. No keys get it off that.
+
+Reflashed, since eeprom is external this does not wiipe the wallets (or the prefs)
+
+At PIN entry.... no keys detected on the blind entry
+Only the check key ackd
+Ah, it has no feedback until check selected. OK past the PIN.... stuck on the checkmark, probably frobbed on the usartinit
+OK, traced all the way to where it initializes the BLE (not) and the USB (wrong ports)
+If am to here, then can socket in the 16u2 and let's flash that beast. Will be OK to use that while figuring out the Native USB and the BLE
+(previously both were UARTs)

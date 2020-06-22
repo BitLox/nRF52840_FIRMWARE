@@ -87,8 +87,10 @@ void activateBLE(void)
 
 void deactivateBLE(void)
 {
+#if defined(NRF52840_XXAA)
     pinMode( ENABLE, OUTPUT );
     digitalWrite( ENABLE, HIGH );
+#endif
 }
 
 

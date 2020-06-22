@@ -17,7 +17,7 @@
 
 //#define NOBUTTONS
 
-//#define FIXED_SEED_DANA
+#define FIXED_SEED_DANA
 //#define FIXED_SEED_NIK
 //#define DISPLAY_PARMS
 #define DISPLAY_SEED
@@ -39,10 +39,7 @@
 #include "stream_comm.h"
 
 #include "hexstring.h"
-//#include "ssp.h"
 #include "arm/keypad_alpha.h"
-//#include "arm/DueTimer/DueTimer.h"
-
 
 #include "arm/main.h"
 

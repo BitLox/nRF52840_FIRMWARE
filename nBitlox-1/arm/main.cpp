@@ -220,6 +220,7 @@ void useWhatComms(void)
 
 void useWhatCommsStealth(void)
 {
+	writeEinkDisplay("in useWhatCommsStealth", false, 5, 5, "", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
 	char rChar;
 	int r;
 	int s;
@@ -687,6 +688,7 @@ void setup()
 
 
 	useWhatCommsStealth();
+	writeEinkDisplay("after", false, 5, 5, "useWhatCommsStealth", false, 5, 25, "", false, 5, 45, "", false , 5, 60, "", false, 0, 0);
 	initUsart();
 
 	if(is_formatted != 123) {

@@ -682,98 +682,88 @@ void pinStatusCheckandPremadePIN()
 	int pinStatus;
 	pinStatus = checkHasPIN();
 
-	if(pinStatus != 127)
-		{
-			char rChar;
-			int r;
-			bool yesOrNo;
+	if(pinStatus != 127) {
+		char rChar;
+		int r;
+		bool yesOrNo;
 
 
-			buttonInterjectionNoAckSetup(ASKUSER_DESCRIBE_STANDARD_SETUP_2);
+		buttonInterjectionNoAckSetup(ASKUSER_DESCRIBE_STANDARD_SETUP_2);
 
-			rChar = waitForNumberButtonPress4to8();
-			clearDisplay();
-			r = rChar - '0';
+		rChar = waitForNumberButtonPress4to8();
+		clearDisplay();
+		r = rChar - '0';
 
-			if(rChar == 'N')
-			{
-				useWhatSetup();
-			}else
-			{
-				generateInsecurePIN(bufferPIN1, r+1);
+		if(rChar == 'N') {
+			useWhatSetup();
+		}
+		else {
+			generateInsecurePIN(bufferPIN1, r+1);
 
-				sha256Begin(sig_hash_hs_ptr);
+			sha256Begin(sig_hash_hs_ptr);
 
-				for (j=0;j<20;j++)
-				{
-					sha256WriteByte(sig_hash_hs_ptr, bufferPIN1[j]);
-				}
-				sha256FinishDouble(sig_hash_hs_ptr);
-				writeHashToByteArray(hash, sig_hash_hs_ptr, false);
+			for (j=0;j<20;j++) {
+				sha256WriteByte(sig_hash_hs_ptr, bufferPIN1[j]);
+			}
+			sha256FinishDouble(sig_hash_hs_ptr);
+			writeHashToByteArray(hash, sig_hash_hs_ptr, false);
 
-				if(1)
-				{
-					int s = 0;
+			if(1) {
+				int s = 0;
+				uint8_t temp1[1];
+				temp1[0] = s;
+				nonVolatileWrite(temp1, WRONG_DEVICE_PIN_COUNT_ADDRESS, 1);
+
+				buttonInterjectionNoAckPlusData(ASKUSER_SET_DEVICE_PIN_BIG, bufferPIN1, r);
+				yesOrNo = waitForButtonPress();
+				clearDisplay();
+				if(!yesOrNo) {
+					nonVolatileWrite(hash, PIN_ADDRESS, 32);
+
+					int s = 127;
 					uint8_t temp1[1];
 					temp1[0] = s;
-					nonVolatileWrite(temp1, WRONG_DEVICE_PIN_COUNT_ADDRESS, 1);
+					nonVolatileWrite(temp1, HAS_PIN_ADDRESS, 1);
 
-					buttonInterjectionNoAckPlusData(ASKUSER_SET_DEVICE_PIN_BIG, bufferPIN1, r);
-					yesOrNo = waitForButtonPress();
-					clearDisplay();
-					if(!yesOrNo)
-					{
-						nonVolatileWrite(hash, PIN_ADDRESS, 32);
-
-						int s = 127;
-						uint8_t temp1[1];
-						temp1[0] = s;
-						nonVolatileWrite(temp1, HAS_PIN_ADDRESS, 1);
-
-						int type = 127;
-						uint8_t temp2[1];
-						temp2[0] = type;
-						nonVolatileWrite(temp2, SETUP_TYPE_ADDRESS, 1);
-
-
-					}else if(yesOrNo)
-					{
-						pinStatusCheckandPremadePIN();
-					}
+					int type = 127;
+					uint8_t temp2[1];
+					temp2[0] = type;
+					nonVolatileWrite(temp2, SETUP_TYPE_ADDRESS, 1);
 				}
-				else
-				{
-//					writeNotEqual_Screen();
-//	//				writeEink("PIN NOT EQUAL", false, STATUS_X, STATUS_Y);
-//					pinStatusCheck();
+				else if(yesOrNo) {
+					pinStatusCheckandPremadePIN();
 				}
 			}
-		}
-		else if (pinStatus == 127)
-		{
-			checkDevicePIN(false);
-/*
-	  		memset(bufferPIN3, 0, 20);
-	  		strcpy(bufferPIN3, "");
-			writeEink("PIN:", false, STATUS_X, STATUS_Y);
-			bufferPIN3 = getInput(false);
-
-
-			char *duress = "911" ;
-			if(*bufferPIN3 == *duress)
-			{
-//				writeEink("STOMP", false, STATUS_X, STATUS_Y);
-				duressFormat();
-				while(1){;;};
+			else {
+	//					writeNotEqual_Screen();
+	//	//				writeEink("PIN NOT EQUAL", false, STATUS_X, STATUS_Y);
+	//					pinStatusCheck();
 			}
-			checkHashesNoDisplay(bufferPIN3);
-*/
 		}
-		else
+	}
+	else if (pinStatus == 127) {
+		checkDevicePIN(false);
+	/*
+		memset(bufferPIN3, 0, 20);
+		strcpy(bufferPIN3, "");
+		writeEink("PIN:", false, STATUS_X, STATUS_Y);
+		bufferPIN3 = getInput(false);
+
+
+		char *duress = "911" ;
+		if(*bufferPIN3 == *duress)
 		{
-			writeEink("PIN ERROR - REFLASH", false, STATUS_X, STATUS_Y);
+	//				writeEink("STOMP", false, STATUS_X, STATUS_Y);
+			duressFormat();
 			while(1){;;};
 		}
+		checkHashesNoDisplay(bufferPIN3);
+	*/
+	}
+	else {
+		writeEink("PIN ERROR - REFLASH", false, STATUS_X, STATUS_Y);
+		while(1){;;};
+	}
 	return;
 }
 
@@ -800,7 +790,7 @@ void checkDevicePIN(bool displayAlpha)
 	clearDisplay();
 //	writeEink("before checkhashes", false, STATUS_X, STATUS_Y);
 	checkHashes(bufferPIN3, displayAlpha);
-//	writeEink("after checkhashes", false, STATUS_X, STATUS_Y);
+	writeEink("after checkhashes", false, STATUS_X, STATUS_Y);
 
 }
 
