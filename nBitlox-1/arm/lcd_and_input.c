@@ -5528,7 +5528,7 @@ void languageMenuInitially(void){
 //	  delay(1000);              // wait for a second
 
 
-	nonVolatileWrite(0, DEVICE_LANG_SET_ADDRESS, 1);
+//	nonVolatileWrite(0, DEVICE_LANG_SET_ADDRESS, 1);
 
 
 	nonVolatileRead(tempLangSet, DEVICE_LANG_SET_ADDRESS, 1);

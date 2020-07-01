@@ -7,6 +7,8 @@
 
 #include "Arduino.h"
 
+#include "hw_rng.h"
+
 #include <string.h>
 #include "avr2arm.h"
 #include "../hwinterface.h"
@@ -61,8 +63,8 @@ int hardwareRandom32Bytes(uint8_t *buffer)
 
 		#if defined(NRF52840_XXAA)
 
-		randomSeed(analogRead(0));
-		uint32_t num = random(100000);
+//		randomSeed(analogRead(0));
+		uint32_t num = SimpleHacks::HW_RNG::get_uint32();
 
 //		uint32_t num = 42;
 

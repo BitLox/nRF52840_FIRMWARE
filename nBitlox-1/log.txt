@@ -11,3 +11,8 @@ Ah, it has no feedback until check selected. OK past the PIN.... stuck on the ch
 OK, traced all the way to where it initializes the BLE (not) and the USB (wrong ports)
 If am to here, then can socket in the 16u2 and let's flash that beast. Will be OK to use that while figuring out the Native USB and the BLE
 (previously both were UARTs)
+
+2020-07-01
+hw_rng is working. 
+Display of the seed is still frobbed up.
+Needed to update the compiler to the latest 2017 edition manually, as the 0.9.3 adafruit does not include it.

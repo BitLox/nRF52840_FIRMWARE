@@ -77,6 +77,11 @@
 			<location>/Users/player1/Synced/Documents/Arduino/Libraries/extEEPROM</location>
 		</link>
 		<link>
+			<name>libraries/hw_rng</name>
+			<type>2</type>
+			<location>/Users/player1/Synced/Documents/Arduino/Libraries/hw_rng</location>
+		</link>
+		<link>
 			<name>libraries/nRF52_ePaper</name>
 			<type>2</type>
 			<location>/Users/player1/Synced/Documents/Arduino/Libraries/nRF52_ePaper</location>

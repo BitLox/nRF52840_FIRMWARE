@@ -13,6 +13,8 @@
 #include "../xex.h"
 #include "../hexstring.h"
 
+#include "hw_rng.h"
+
 //#include "../ssp.h" UNNEEDED
 
 #include "../utf8.h"
@@ -649,6 +651,7 @@ void setup()
 
 	#if defined(NRF52840_XXAA)
 	setupTouchem();
+	SimpleHacks::HW_RNG::begin(); // ensure rng hardware is initialized
 	#endif
 
 

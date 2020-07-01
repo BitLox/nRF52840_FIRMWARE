@@ -17,7 +17,7 @@
 
 //#define NOBUTTONS
 
-#define FIXED_SEED_DANA
+//#define FIXED_SEED_DANA
 //#define FIXED_SEED_NIK
 //#define DISPLAY_PARMS
 #define DISPLAY_SEED
